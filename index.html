@@ -102,58 +102,29 @@ transform:rotateX(180deg);
 
 /* страница с сердцами */
 
-.heartsPage{
+.cardsPage{
 display:flex;
-gap:60px;
+gap:30px;
 flex-wrap:wrap;
 justify-content:center;
 margin-top:40px;
 }
 
-.heartCard{
-width:160px;
-height:160px;
-background:#ff4b7d;
-position:relative;
-transform:rotate(-45deg);
-display:flex;
-justify-content:center;
-align-items:center;
-margin:30px;
+.card{
+width:220px;
+padding:25px;
+background:rgba(255,255,255,0.25);
+border-radius:20px;
+backdrop-filter:blur(8px);
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+font-size:16px;
+line-height:1.5;
+transition:0.3s;
 }
 
-.heartCard:before,
-.heartCard:after{
-content:"";
-position:absolute;
-width:160px;
-height:160px;
-background:#ff4b7d;
-border-radius:50%;
-}
-
-.heartCard:before{
-top:-80px;
-left:0;
-}
-
-.heartCard:after{
-left:80px;
-top:0;
-}
-
-.heartText{
-transform:rotate(45deg);
-width:110px;
-font-size:14px;
-text-align:center;
-line-height:1.4;
-}
-
-.heartText{
-transform:rotate(45deg);
-width:120px;
-font-size:14px;
+.card:hover{
+transform:scale(1.05);
+background:rgba(255,255,255,0.35);
 }
 
 </style>
@@ -190,28 +161,22 @@ font-size:14px;
 
 <h2>Тогда наш план на вечер 💖</h2>
 
-<div class="heartsPage">
+<div class="cardsPage">
 
-<div class="heartCard">
-<div class="heartText">
-⏰ Время встречи  
-18:00  
+<div class="card">
+⏰ <b>Время встречи</b><br><br>
+18:00<br>
 Я сам тебя заберу
 </div>
+
+<div class="card">
+😊 <b>Твоя задача</b><br><br>
+С тебя хорошее настроение
 </div>
 
-<div class="heartCard">
-<div class="heartText">
-😊 С тебя  
-хорошее настроение
-</div>
-</div>
-
-<div class="heartCard">
-<div class="heartText">
-👗 Дресс-код  
+<div class="card">
+👗 <b>Дресс-код</b><br><br>
 Ты в любой одежде красива
-</div>
 </div>
 
 </div>
