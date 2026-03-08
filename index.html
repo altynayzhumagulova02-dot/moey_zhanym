@@ -104,43 +104,50 @@ transform:rotateX(180deg);
 
 .heartsPage{
 display:flex;
-gap:20px;
-margin-top:20px;
+gap:60px;
 flex-wrap:wrap;
 justify-content:center;
+margin-top:40px;
 }
 
 .heartCard{
-width:180px;
-height:150px;
+width:160px;
+height:160px;
 background:#ff4b7d;
-border-radius:50% 50% 0 0;
 position:relative;
 transform:rotate(-45deg);
 display:flex;
 justify-content:center;
 align-items:center;
-padding:20px;
+margin:30px;
 }
 
 .heartCard:before,
 .heartCard:after{
 content:"";
 position:absolute;
-width:180px;
-height:150px;
+width:160px;
+height:160px;
 background:#ff4b7d;
 border-radius:50%;
 }
 
 .heartCard:before{
-top:-90px;
+top:-80px;
 left:0;
 }
 
 .heartCard:after{
-left:90px;
+left:80px;
 top:0;
+}
+
+.heartText{
+transform:rotate(45deg);
+width:110px;
+font-size:14px;
+text-align:center;
+line-height:1.4;
 }
 
 .heartText{
