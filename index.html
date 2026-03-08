@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Приглашение</title>
+
+<style>
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#ff758c,#ff7eb3);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
+
+.box{
+background:rgba(255,255,255,0.2);
+padding:40px;
+border-radius:20px;
+backdrop-filter: blur(10px);
+}
+
+button{
+padding:12px 25px;
+border:none;
+border-radius:20px;
+font-size:18px;
+cursor:pointer;
+margin:10px;
+}
+
+.open{background:white;color:#ff4b7d;}
+.yes{background:#4CAF50;color:white;}
+.no{background:#ff4b7d;color:white;}
+
+.hidden{display:none;}
+
+.fade{
+animation:fade 1s;
+}
+
+@keyframes fade{
+from{opacity:0; transform:scale(0.8);}
+to{opacity:1; transform:scale(1);}
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<div id="start">
+<h2> Моя любимая, у меня для тебя кое-что есть...открой 💌</h2>
+<button class="open" onclick="openInvite()">Нажми чтобы открыть</button>
+</div>
+
+<div id="invite" class="hidden">
+<h2>С праздником моя Алтынай. Хочу пригласить тебя на вечер, пойдешь ли ты со мной на свидание?❤️</h2>
+<p>Ты согласна?</p>
+
+<button class="yes" onclick="answer('yes')">Да ❤️</button>
+<button class="no" onclick="answer('no')">Конечнооо❤️</button>
+
+<p id="result"></p>
+</div>
+
+</div>
+
+<script>
+
+function openInvite(){
+document.getElementById("start").style.display="none";
+let invite=document.getElementById("invite");
+invite.classList.remove("hidden");
+invite.classList.add("fade");
+}
+
+function answer(a){
+let r=document.getElementById("result");
+
+if(a=="yes"){
+r.innerHTML="Прекрасно! Будь готова в 18:00😊";
+}else{
+r.innerHTML="Отлично! Заберу в 18:00 😌";
+}
+
+}
+
+</script>
+
+</body>
+</html>
