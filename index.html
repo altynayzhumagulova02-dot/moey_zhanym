@@ -5,23 +5,44 @@
 <title>Приглашение</title>
 
 <style>
+
 body{
-font-family: Arial;
-background: linear-gradient(135deg,#ff758c,#ff7eb3);
+margin:0;
+font-family:Arial;
 height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 text-align:center;
 color:white;
+background:linear-gradient(135deg,#ff6a88,#ff99ac,#ffd1dc);
+overflow:hidden;
 }
+
+/* летающие сердечки */
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh); opacity:0;}
+50%{opacity:1;}
+100%{transform:translateY(-10vh); opacity:0;}
+}
+
+/* коробка */
 
 .box{
 background:rgba(255,255,255,0.2);
 padding:40px;
 border-radius:20px;
-backdrop-filter: blur(10px);
+backdrop-filter:blur(10px);
 }
+
+/* кнопки */
 
 button{
 padding:12px 25px;
@@ -38,6 +59,8 @@ margin:10px;
 
 .hidden{display:none;}
 
+/* анимация */
+
 .fade{
 animation:fade 1s;
 }
@@ -46,50 +69,198 @@ animation:fade 1s;
 from{opacity:0; transform:scale(0.8);}
 to{opacity:1; transform:scale(1);}
 }
-</style>
 
+/* конверт */
+
+.envelope{
+width:200px;
+height:120px;
+background:#ff4b7d;
+position:relative;
+margin:auto;
+cursor:pointer;
+border-radius:10px;
+}
+
+.envelope:before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:0;
+height:0;
+border-left:100px solid transparent;
+border-right:100px solid transparent;
+border-bottom:60px solid #ff6f91;
+transform-origin:top;
+transition:0.6s;
+}
+
+.envelope.open:before{
+transform:rotateX(180deg);
+}
+
+/* страница с сердцами */
+
+.heartsPage{
+display:flex;
+gap:20px;
+margin-top:20px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.heartCard{
+width:180px;
+height:150px;
+background:#ff4b7d;
+border-radius:50% 50% 0 0;
+position:relative;
+transform:rotate(-45deg);
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.heartCard:before,
+.heartCard:after{
+content:"";
+position:absolute;
+width:180px;
+height:150px;
+background:#ff4b7d;
+border-radius:50%;
+}
+
+.heartCard:before{
+top:-90px;
+left:0;
+}
+
+.heartCard:after{
+left:90px;
+top:0;
+}
+
+.heartText{
+transform:rotate(45deg);
+width:120px;
+font-size:14px;
+}
+
+</style>
 </head>
 
 <body>
 
+<div id="hearts"></div>
+
 <div class="box">
 
 <div id="start">
-<h2> Моя любимая, у меня для тебя кое-что есть...открой 💌</h2>
-<button class="open" onclick="openInvite()">Нажми чтобы открыть</button>
+
+<div class="envelope" onclick="openEnvelope()" id="env"></div>
+
+<h2>Моя любимая Алтынай, у меня для тебя письмо 💌</h2>
+
+<p>Нажми на конверт</p>
+
 </div>
 
 <div id="invite" class="hidden">
-<h2>С праздником моя Алтынай. Хочу пригласить тебя на вечер, пойдешь ли ты со мной на свидание?❤️</h2>
-<p>Ты согласна?</p>
 
-<button class="yes" onclick="answer('yes')">Да ❤️</button>
-<button class="no" onclick="answer('no')">Конечнооо❤️</button>
+<h2>С праздником моя Алтынай ❤️</h2>
 
-<p id="result"></p>
+<p>Хочу пригласить тебя на вечер. Пойдёшь со мной на свидание?</p>
+
+<button class="yes" onclick="answer()">Да ❤️</button>
+<button class="no">Конечно ❤️</button>
+
+</div>
+
+<div id="final" class="hidden">
+
+<h2>Тогда наш план на вечер 💖</h2>
+
+<div class="heartsPage">
+
+<div class="heartCard">
+<div class="heartText">
+⏰ Время встречи  
+18:00  
+Я сам тебя заберу
+</div>
+</div>
+
+<div class="heartCard">
+<div class="heartText">
+😊 С тебя  
+хорошее настроение
+</div>
+</div>
+
+<div class="heartCard">
+<div class="heartText">
+👗 Дресс-код  
+Ты в любой одежде красива
+</div>
+</div>
+
+</div>
+
 </div>
 
 </div>
 
 <script>
 
-function openInvite(){
+/* конверт */
+
+function openEnvelope(){
+document.getElementById("env").classList.add("open");
+
+setTimeout(()=>{
 document.getElementById("start").style.display="none";
 let invite=document.getElementById("invite");
 invite.classList.remove("hidden");
 invite.classList.add("fade");
-}
-
-function answer(a){
-let r=document.getElementById("result");
-
-if(a=="yes"){
-r.innerHTML="Прекрасно! Будь готова в 18:00😊";
-}else{
-r.innerHTML="Отлично! Заберу в 18:00 😌";
-}
+},600);
 
 }
+
+/* ответ */
+
+function answer(){
+
+document.getElementById("invite").style.display="none";
+
+let final=document.getElementById("final");
+final.classList.remove("hidden");
+final.classList.add("fade");
+
+}
+
+/* летающие сердечки */
+
+function createHeart(){
+
+let heart=document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*20+15)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000)
+
+}
+
+setInterval(createHeart,500)
 
 </script>
 
